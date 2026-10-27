@@ -4,20 +4,16 @@ import plotly.express as px
 
 # Page Setup
 st.set_page_config(
-    page_title="Page 2: District Amenities Heatmap",
+    page_title="District Amenities Heatmap",
     layout="wide"
 )
 
 st.header("Objective 2: District-Level Basic Amenities Infrastructure Analysis 🚰", divider="gray")
 
-# Objective Statement
-st.markdown("""
-**Objective Statement:** To analyze district-level spatial variations in basic utility coverage (piped water and sanitation access) across Malaysian states to identify regional infrastructure gaps.
-""")
-
 # Load Cleaned Dataset
 try:
     df_amenities = pd.read_excel('hh_access_amenities_cleaned.xlsx')
+    st.success("Data loaded successfully!")
     df_amenities['date'] = pd.to_datetime(df_amenities['date'])
     df_amenities['year'] = df_amenities['date'].dt.year
 
@@ -46,7 +42,7 @@ try:
 
     # Raw Data Preview
     st.subheader("Raw Data Preview")
-    st.dataframe(state_amen[['year', 'district', 'piped_water', 'sanitation', 'electricity']])
+    st.dataframe(state_amen[['Year', 'District', 'Piped Water', 'Sanitation', 'Electricity']])
 
     # Multi-District Heatmap
     st.subheader(f"Multi-District Infrastructure Access Heatmap ({selected_state})")
