@@ -58,7 +58,7 @@ try:
         labels=dict(x="Year", y="District", color="Access Rate (%)"),
         x=[str(y) for y in pivot_df.columns],
         y=pivot_df.index,
-        color_continuous_scale="Blues" if metric_col == 'piped_water' else "Purples",
+        color_continuous_scale="Blues" if metric_col == 'piped_water' else "Reds",
         zmin=80,
         zmax=100,
         text_auto=".1f",
