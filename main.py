@@ -51,6 +51,7 @@ try:
     metric_col = 'piped_water' if amenity_choice == "Piped Water Access (%)" else 'sanitation'
 
     # Pivot table for Heatmap Matrix (Districts vs Years)
+    # Pivot table for Heatmap Matrix (Districts vs Years)
     pivot_df = state_amen.pivot(index='district', columns='year', values=metric_col)
 
     fig2 = px.imshow(
@@ -58,12 +59,15 @@ try:
         labels=dict(x="Year", y="District", color="Access Rate (%)"),
         x=[str(y) for y in pivot_df.columns],
         y=pivot_df.index,
-        color_continuous_scale="Blues" if metric_col == 'piped_water' else "Reds",
-        zmin=80,
+        color_continuous_scale="RdYlGn",
+        zmin=95,
         zmax=100,
         text_auto=".1f",
         title=f"District-level {amenity_choice} matrix in {selected_state} (2019 - 2024)"
     )
+    
+    # Clean up X-axis ticks and layout contrast
+    fig2.update_xaxes(type='category')
     fig2.update_layout(height=max(400, len(pivot_df) * 35))
 
     st.plotly_chart(fig2, use_container_width=True)
