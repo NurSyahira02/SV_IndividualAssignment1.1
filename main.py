@@ -42,7 +42,7 @@ try:
 
     # Raw Data Preview
     st.subheader("Raw Data Preview")
-    st.dataframe(state_amen[['Year', 'District', 'Piped Water', 'Sanitation', 'Electricity']])
+    st.dataframe(state_amen[['year', 'district', 'piped_water', 'sanitation', 'electricity']])
 
     # Multi-District Heatmap
     st.subheader(f"Multi-District Infrastructure Access Heatmap ({selected_state})")
