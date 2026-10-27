@@ -52,6 +52,7 @@ try:
 
     # Pivot table for Heatmap Matrix (Districts vs Years)
     # Pivot table for Heatmap Matrix (Districts vs Years)
+    # Pivot table for Heatmap Matrix (Districts vs Years)
     pivot_df = state_amen.pivot(index='district', columns='year', values=metric_col)
 
     fig2 = px.imshow(
@@ -63,15 +64,18 @@ try:
         zmin=95,
         zmax=100,
         text_auto=".1f",
+        aspect="auto",  # <-- Stretches heatmap to full container width
         title=f"District-level {amenity_choice} matrix in {selected_state} (2019 - 2024)"
     )
     
-    # Clean up X-axis ticks and layout contrast
-    fig2.update_xaxes(type='category')
-    fig2.update_layout(height=max(400, len(pivot_df) * 35))
+    fig2.update_xaxes(type='category', tickangle=0)
+    fig2.update_traces(textfont_size=14)  # <-- Larger font for cell values
+    fig2.update_layout(
+        height=max(450, len(pivot_df) * 40),
+        margin=dict(l=40, r=40, t=60, b=40)
+    )
 
     st.plotly_chart(fig2, use_container_width=True)
-
     # Interpretation Section
     st.markdown("### 💬 Interpretation & Discussion")
     st.info(f"""
