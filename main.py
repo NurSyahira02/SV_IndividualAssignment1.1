@@ -58,7 +58,9 @@ try:
         labels=dict(x="Year", y="District", color="Access Rate (%)"),
         x=[str(y) for y in pivot_df.columns],
         y=pivot_df.index,
-        color_continuous_scale="Viridis" if metric_col == 'piped_water' else "Magma",
+        color_continuous_scale="Blues" if metric_col == 'piped_water' else "Purples",
+        zmin=80,
+        zmax=100,
         text_auto=".1f",
         title=f"District-level {amenity_choice} matrix in {selected_state} (2019 - 2024)"
     )
