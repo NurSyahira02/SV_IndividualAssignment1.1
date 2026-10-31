@@ -35,10 +35,10 @@ try:
 
     # Summary Boxes (4 Metrics)
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Water Access", f"{avg_water:.1f}%", help="Average district piped water access rate in 2024 (tracked from 2019–2024)", border=True)
-    col2.metric("Sanitation Access", f"{avg_sanitation:.1f}%", help="Average district sanitation access rate in 2024", border=True)
-    col3.metric("Lowest Access", f"{min_water_dist} ({min_water_val:.1f}%)", help="District with the lowest piped water coverage in 2024", border=True)
-    col4.metric("Total Districts", f"{len(latest_amen['district'].unique())}", help="Number of administrative districts analyzed in this state", border=True)
+    col1.metric("Water Access", f"{avg_water:.1f}%", help="Latest average district piped water access rate across the 2019–2024 evaluation period", border=True)
+    col2.metric("Sanitation Access", f"{avg_sanitation:.1f}%", help="Latest average district sanitation access rate across the 2019–2024 evaluation period", border=True)
+    col3.metric("Lowest Access", f"{min_water_dist} ({min_water_val:.1f}%)", help="District recording the lowest piped water coverage within the 2019–2024 evaluation period", border=True)
+    col4.metric("Total Districts", f"{len(latest_amen['district'].unique())}", help="Total number of administrative districts analyzed across 2019–2024", border=True)
 
     # Raw Data Preview
     st.subheader("Raw Data Preview")
