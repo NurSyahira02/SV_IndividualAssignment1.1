@@ -27,6 +27,8 @@ try:
     latest_amen = state_amen[state_amen['year'] == 2024]
     avg_water = latest_amen['piped_water'].mean()
     avg_sanitation = latest_amen['sanitation'].mean()
+    avg_electricity = latest_amen['electricity'].mean()
+    total_districts = len(latest_amen['district'].unique())
     
     # District with lowest piped water access rate
     min_water_row = latest_amen.loc[latest_amen['piped_water'].idxmin()] if not latest_amen.empty else None
@@ -37,8 +39,8 @@ try:
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Water Access", f"{avg_water:.1f}%", help="Average district piped water access rate across the 2019–2024 evaluation period", border=True)
     col2.metric("Sanitation Access", f"{avg_sanitation:.1f}%", help="Average district sanitation access rate across the 2019–2024 evaluation period", border=True)
-    col3.metric("Lowest Access", f"{min_water_dist} ({min_water_val:.1f}%)", help="District recording the lowest piped water coverage within the 2019–2024 evaluation period", border=True)
-    col4.metric("Total Districts", f"{len(latest_amen['district'].unique())}", help="Total number of administrative districts analyzed", border=True)
+    col3.metric("Electricity Access", f"{avg_electricity:.1f}%", help="Average district electricity access rate across the 2019–2024 evaluation period", border=True)
+    col4.metric("Total Districts", f"{total_districts}", help="Total number of administrative districts analyzed across 2019–2024", border=True)
 
     # Raw Data Preview
     st.subheader("Raw Data Preview")
