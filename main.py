@@ -49,11 +49,21 @@ try:
     # Multi-District Heatmap
     st.subheader(f"Multi-District Infrastructure Access Heatmap ({selected_state})")
     
-    amenity_choice = st.radio("Select Utility Metric:", ["Piped Water Access (%)", "Sanitation Access (%)"], horizontal=True)
-    metric_col = 'piped_water' if amenity_choice == "Piped Water Access (%)" else 'sanitation'
+    # Updated Radio Selector with Electricity Access (%)
+    amenity_choice = st.radio(
+        "Select Utility Metric:", 
+        ["Piped Water Access (%)", "Sanitation Access (%)", "Electricity Access (%)"], 
+        horizontal=True
+    )
+    
+    # Map selection to dataset column
+    column_mapping = {
+        "Piped Water Access (%)": "piped_water",
+        "Sanitation Access (%)": "sanitation",
+        "Electricity Access (%)": "electricity"
+    }
+    metric_col = column_mapping[amenity_choice]
 
-    # Pivot table for Heatmap Matrix (Districts vs Years)
-    # Pivot table for Heatmap Matrix (Districts vs Years)
     # Pivot table for Heatmap Matrix (Districts vs Years)
     pivot_df = state_amen.pivot(index='district', columns='year', values=metric_col)
 
@@ -78,12 +88,13 @@ try:
     )
 
     st.plotly_chart(fig2, use_container_width=True)
+
     # Interpretation Section
     st.markdown("### 💬 Interpretation & Discussion")
     st.info(f"""
     * **Spatial Pattern:** The heatmap matrix illustrates access rates across districts in **{selected_state}**. Major urban centers exhibit near 100% saturation across all evaluation years.
     * **Disparity Identification:** Varied color intensities reveal specific rural or interior districts experiencing lower baseline access or slower infrastructure development over time.
-    * **Policy Insight:** Heatmap visualizations allow local government planning units to immediately locate underdeveloped districts requiring priority funding for water pipeline and sanitation upgrades.
+    * **Policy Insight:** Heatmap visualizations allow local government planning units to immediately locate underdeveloped districts requiring priority funding for water pipeline, sanitation, and electrical grid upgrades.
     """)
 
 except Exception as e:
