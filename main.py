@@ -8,7 +8,7 @@ st.set_page_config(
     layout="wide"
 )
 
-st.header("Objective 2: District-Level Basic Amenities Infrastructure Analysis 🚰", divider="gray")
+st.header("District-Level Basic Amenities Infrastructure Analysis 🚰", divider="gray")
 
 # Load Cleaned Dataset
 try:
@@ -35,10 +35,10 @@ try:
 
     # Summary Boxes (4 Metrics)
     col1, col2, col3, col4 = st.columns(4)
-    col1.metric("Avg Water Access (2024)", f"{avg_water:.1f}%", help="State Average Piped Water Access Rate in 2024", border=True)
-    col2.metric("Avg Sanitation Access (2024)", f"{avg_sanitation:.1f}%", help="State Average Sanitation Access Rate in 2024", border=True)
-    col3.metric("Lowest Water Access", f"{min_water_dist} ({min_water_val:.1f}%)", help="District with lowest piped water access in 2024", border=True)
-    col4.metric("Total Districts", f"{len(latest_amen['district'].unique())}", help="Number of distinct districts analyzed", border=True)
+    col1.metric("Water Access", f"{avg_water:.1f}%", help="Average district piped water access rate in 2024 (tracked from 2019–2024)", border=True)
+    col2.metric("Sanitation Access", f"{avg_sanitation:.1f}%", help="Average district sanitation access rate in 2024", border=True)
+    col3.metric("Lowest Access", f"{min_water_dist} ({min_water_val:.1f}%)", help="District with the lowest piped water coverage in 2024", border=True)
+    col4.metric("Total Districts", f"{len(latest_amen['district'].unique())}", help="Number of administrative districts analyzed in this state", border=True)
 
     # Raw Data Preview
     st.subheader("Raw Data Preview")
